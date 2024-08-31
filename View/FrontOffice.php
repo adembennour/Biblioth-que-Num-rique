@@ -1,3 +1,16 @@
+<?php
+require_once '../Model/Document.php';
+require_once '../Model/Emprunt.php';
+
+// Initialize PDO connection (adjust path as needed)
+$pdo = config::getConnexion();
+
+// Retrieve all documents
+$documents = Document::listDocuments($pdo);
+$emprunt = Emprunt::listEmprunts($pdo);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,26 +70,57 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Add rows here dynamically with JS -->
+                    <?php if (!empty($documents)): ?>
+                            <?php foreach ($documents as $document): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($document['titre']); ?></td>
+                                    <td><?= htmlspecialchars($document['auteur']); ?></td>
+                                    <td><?= htmlspecialchars($document['date_publication']); ?></td>
+                                    <td><?= htmlspecialchars($document['categorie']); ?></td>
+                                    <td><?= htmlspecialchars($document['description']); ?></td>
+                                    <td>
+                                        <form action="addEmprunt.php">  
+                                            <button type="submit" class="an anc">Borrow </button>
+                                        </form>
+                                    </td>
+                                  
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr><td colspan="8">No documents found.</td></tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
 
             <div class="borrowing-history">
                 <h2>Your Borrowing History</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Date Borrowed</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Add rows here dynamically with JS -->
-                    </tbody>
-                </table>
+                <h1>Borrowing History for </h1>
+    
+                <?php if (!empty($(emprunts))): ?>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Date Borrowed</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($emprunts as $emprunt): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($emprunt['titre']); ?></td>
+                                    <td><?= htmlspecialchars($emprunt['date_emprunt']); ?></td>
+                                    <td><?= htmlspecialchars($emprunt['date_retour_prevue']); ?></td>
+                                    <td><?= htmlspecialchars($emprunt['statut']); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <p>No borrowing history found for this user.</p>
+                <?php endif; ?>
             </div>
         </div>
     </section>

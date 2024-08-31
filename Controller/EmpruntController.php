@@ -46,6 +46,17 @@ class EmpruntController {
         }
     }
 
+    public function listEmpruntsByEmprunteur() {
+        if (isset($_GET['emprunteur'])) {
+            $emprunteur = $_GET['emprunteur'];
+            $emprunts = Emprunt::getEmpruntsByEmprunteur($this->pdo, $emprunteur);
+            require '../View/FrontOffice.php'; // This view will return the HTML structure for the history
+        } else {
+            echo "No emprunteur specified.";
+            exit;
+        }
+    }
+
     // Method to list all emprunts
     public function listEmprunts() {
         $Emprunts = Emprunt::listEmprunts($this->pdo);
@@ -112,6 +123,9 @@ if (isset($_GET['action'])) {
             break;
         case 'deleteEmprunt':
             $controller->deleteEmprunt();
+            break;
+        case 'listEmpruntsByEmprunteur':
+            $controller->listEmpruntsByEmprunteur();
             break;
         case 'listEmprunts':
         default:

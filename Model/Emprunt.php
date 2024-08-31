@@ -167,6 +167,25 @@ class Emprunt {
             throw new Exception('Error adding emprunt: ' . $e->getMessage());
         }
 }
+
+public static function getEmpruntsByEmprunteur(PDO $pdo, string $emprunteur): array {
+    $sql = "
+        SELECT emprunt.*, document.titre 
+        FROM emprunt 
+        JOIN document ON emprunt.id_document = document.id_document 
+        WHERE emprunt.emprunteur = :emprunteur
+    ";
+
+    try {
+        $query = $pdo->prepare($sql);
+        $query->bindParam(':emprunteur', $emprunteur, PDO::PARAM_STR);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        throw new Exception('Error retrieving emprunts: ' . $e->getMessage());
+    }
+}
+
     // Method to delete a emprunt from the database
     public function deleteEmprunt(int $id_emprunt): bool {
         $sql = "DELETE FROM emprunt WHERE id_emprunt = :id_emprunt";
