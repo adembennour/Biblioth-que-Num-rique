@@ -1,0 +1,203 @@
+/* Reset and basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 15px 0;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #e91e63;
+}
+
+.hero {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)), url('path-to-your-hero-image.jpg');
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
+
+.cta-button {
+    background-color: #e91e63;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #d81b60;
+}
+
+.search-bar {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    margin: -50px auto 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Increase this value to ensure there's enough space */
+    z-index: 10; /* Ensure the search bar is on top */
+    position: relative;
+}
+
+.search-bar input[type="text"], .search-bar input[type="date"] {
+    width: 20%;
+    padding: 12px;
+    border-radius: 25px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+}
+
+.search-bar button {
+    padding: 12px 20px;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #333;
+}
+
+.content {
+    margin-bottom: 50px;
+}
+
+.available-documents, .borrowing-history {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #e91e63;
+    border-bottom: 2px solid #e91e63;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 1em;
+}
+
+table th, table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+table th {
+    background-color: #222;
+    color: #fff;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.social-icons img {
+    width: 30px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
+
+.social-icons a {
+    text-decoration: none;
+}
